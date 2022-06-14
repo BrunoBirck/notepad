@@ -1,7 +1,9 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
-  flex: 1
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.Text`
@@ -23,18 +25,6 @@ export const AddButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   z-index: 1;
-`
-
-export const AddButtonArea = styled.View`
-  width: 60px;
-  height: 60px;
-  background-color: #0A1747;
-  border-radius: 40px;
-  position: absolute;
-  bottom: 40px;
-  right: 30px;
-  align-items: center;
-  justify-content: center;
 `
 
 export const AddIcon = styled.Image`

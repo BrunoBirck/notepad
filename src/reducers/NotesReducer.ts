@@ -1,7 +1,5 @@
 const initialState = {
-  list: [
-    {title: 'Primeira nota', content: 'primeira nota 1,2,3...', location: 'Giruá/RS'}
-  ]
+  list: []
 } 
  
 export default (state = initialState, action:any) => {

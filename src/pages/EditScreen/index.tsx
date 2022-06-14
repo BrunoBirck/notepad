@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, BackButton, BackIcon, Content, TitleInput, BodyInput, DeleteButton, HeaderArea, DeleteIcon } from './styles';
 import Arrow from '../../assets/arrow-left.png';
 import Trash from '../../assets/trash.png';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
-import { Alert } from 'react-native';
 import * as Location from 'expo-location'
+import { Alert } from 'react-native';
+import {GOOGLE_API_KEY} from '@env';
 
 const EditScreen = () => {
   const navigation = useNavigation();
@@ -13,18 +14,18 @@ const EditScreen = () => {
   const dispatch = useDispatch();
   const notes = useSelector(state => state.notes.list);
 
-  const [title, setTitle] = useState<string>();
-  const [description, setDescription] = useState<string>();
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [status, setStatus] = useState<string>('new');
-  const [errorMsg, setErrorMsg] = useState<string>();
   const [address, setAddress] = useState<any>();
 
   const getAddress = async () => {
     let { status } = await Location.requestPermissionsAsync();
     if (status !== 'granted') {
-      setErrorMsg('Permissão negada!');
+      Alert.alert('Permissão negada!')
     }
-    Location.setGoogleApiKey('AIzaSyBuQLp51gMTppgKEMYOQw8OyVnGcfGvTc4');
+    
+    Location.setGoogleApiKey(GOOGLE_API_KEY);
     let { coords } = await Location.getCurrentPositionAsync();
     if (coords) {
       let { longitude, latitude } = coords;
@@ -60,8 +61,8 @@ const EditScreen = () => {
         })
       }
       navigation.goBack()
-    } else {
-      Alert.alert('Preencha os campos para salvar sua anotação')
+    } else if(title === '' && description === '') {
+      navigation.goBack()
     }
   }
 

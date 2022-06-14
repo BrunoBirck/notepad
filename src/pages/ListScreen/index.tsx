@@ -1,6 +1,6 @@
 import React from 'react';
 import CardNote from '../../components/CardNote';
-import { Container, Title, AddButton, AddButtonArea, AddIcon, NotesList, NotesArea, NotesIcon, NotesText } from './styles';
+import { Container, Title, AddButton, AddIcon, NotesList, NotesArea, NotesIcon, NotesText } from './styles';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Plus from '../../assets/plus.png';
